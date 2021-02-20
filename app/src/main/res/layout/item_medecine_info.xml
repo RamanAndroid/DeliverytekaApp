@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:padding="@dimen/padding_margin_xlarge">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/product_image_card"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/product_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/test_product_image" />
+
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/product_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textSize="@dimen/text_large"
+            app:fontFamily="@font/roboto_medium"
+            app:layout_constraintEnd_toStartOf="@id/add_to_cart_btn"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@id/product_image_card"
+            app:layout_constraintTop_toTopOf="@id/product_image_card" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/product_pack"
+            android:layout_width="194dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:textColor="@color/grey_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.078"
+            app:layout_constraintStart_toEndOf="@+id/product_image_card"
+            app:layout_constraintTop_toBottomOf="@+id/product_title" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/product_country"
+            android:layout_width="194dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:textColor="@color/grey_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.09"
+            app:layout_constraintStart_toEndOf="@+id/product_image_card"
+            app:layout_constraintTop_toBottomOf="@+id/product_pack" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/product_recipe"
+            android:layout_width="194dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:textColor="@color/grey_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.09"
+            app:layout_constraintStart_toEndOf="@+id/product_image_card"
+            app:layout_constraintTop_toBottomOf="@+id/product_country" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_to_cart_btn"
+            style="@style/RoundButton"
+            android:outlineProvider="background"
+            app:icon="@drawable/ic_cart_add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@id/add_to_cart_btn"
+            app:layout_constraintStart_toStartOf="@id/add_to_cart_btn"
+            app:layout_constraintTop_toTopOf="@id/product_title">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/product_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fontFamily="@font/roboto_medium" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/ruble"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/spaced_ruble"
+                app:fontFamily="@font/roboto_medium" />
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_height"
+        android:layout_gravity="bottom"
+        android:layout_marginHorizontal="@dimen/padding_margin_xlarge"
+        android:background="@color/divider" />
+
+</androidx.cardview.widget.CardView>
