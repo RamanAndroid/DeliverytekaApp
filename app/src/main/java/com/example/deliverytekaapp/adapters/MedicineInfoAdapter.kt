@@ -1,6 +1,7 @@
 package com.example.deliverytekaapp.adapters
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,7 +47,7 @@ class MedicineInfoAdapter(private val context: Context) :
         holder.tvPrice.text= medicine.price
         holder.tvPack.text = String.format(dosageFormat,medicine.dosage,medicine.pack)
         holder.tvCountry.text = String.format(manufactureFormat,medicine.country)
-        holder.tvRecipe.text = isRecipe(medicine.isrecipe)
+        holder.tvRecipe.text =isRecipe(medicine.isrecipe)
         holder.itemView.setOnClickListener {
             onMedicineClickListener?.onMedicineClick(medicine)
         }
@@ -59,11 +60,11 @@ class MedicineInfoAdapter(private val context: Context) :
 
     override fun getItemCount(): Int = medicineInfoList.size
 
-    private fun isRecipe(isrecipe: String?): String {
+    private fun isRecipe(isrecipe: String?):String {
         isrecipe?.let {
-            if (it.toInt() == 1) return "-По рецепту врача"
+            if (it.toInt() == 1) return "-Без рецепта врача"
         }
-        return "-Без рецепта врача"
+        return "-По рецепту врача"
     }
 
 }

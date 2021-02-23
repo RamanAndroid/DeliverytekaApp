@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
 
 
 @Entity(tableName = "full_price_list")
-open class Medicine(
+data class Medicine(
     @PrimaryKey
     @SerializedName("id")
     @Expose

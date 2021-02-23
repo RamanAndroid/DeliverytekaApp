@@ -4,9 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.deliverytekaapp.pojo.FavouriteMedicine
 import com.example.deliverytekaapp.pojo.Medicine
 
-@Database(entities = [Medicine::class], version = 5, exportSchema = false)
+@Database(entities = [Medicine::class, FavouriteMedicine::class], version = 8, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     companion object {
 
@@ -31,4 +32,3 @@ abstract class AppDatabase : RoomDatabase() {
 
     abstract fun medicineInfoDao(): MedicinePriceInfoDao
 }
-//,FavouriteMedicine::class

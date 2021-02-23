@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
@@ -33,16 +32,16 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/product_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="196dp"
+            android:layout_height="21dp"
             android:layout_marginStart="12dp"
-            android:layout_marginEnd="16dp"
             android:ellipsize="end"
             android:maxLines="2"
+            android:textColor="@color/black"
             android:textSize="@dimen/text_large"
             app:fontFamily="@font/roboto_medium"
-            app:layout_constraintEnd_toStartOf="@id/add_to_cart_btn"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.04"
             app:layout_constraintStart_toEndOf="@id/product_image_card"
             app:layout_constraintTop_toTopOf="@id/product_image_card" />
 
@@ -51,12 +50,12 @@
             android:layout_width="194dp"
             android:layout_height="0dp"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="16dp"
             android:ellipsize="end"
             android:maxLines="3"
             android:textColor="@color/grey_text"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.078"
+            app:layout_constraintHorizontal_bias="0.039"
             app:layout_constraintStart_toEndOf="@+id/product_image_card"
             app:layout_constraintTop_toBottomOf="@+id/product_title" />
 
@@ -65,14 +64,15 @@
             android:layout_width="194dp"
             android:layout_height="0dp"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:maxLines="3"
             android:textColor="@color/grey_text"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.09"
+            app:layout_constraintHorizontal_bias="0.039"
             app:layout_constraintStart_toEndOf="@+id/product_image_card"
             app:layout_constraintTop_toBottomOf="@+id/product_pack" />
+
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/product_recipe"
@@ -84,24 +84,16 @@
             android:maxLines="3"
             android:textColor="@color/grey_text"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.09"
+            app:layout_constraintHorizontal_bias="0.039"
             app:layout_constraintStart_toEndOf="@+id/product_image_card"
             app:layout_constraintTop_toBottomOf="@+id/product_country" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/add_to_cart_btn"
-            style="@style/RoundButton"
-            android:outlineProvider="background"
-            app:icon="@drawable/ic_cart_add"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="@id/add_to_cart_btn"
-            app:layout_constraintStart_toStartOf="@id/add_to_cart_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/product_title"
             app:layout_constraintTop_toTopOf="@id/product_title">
 
             <com.google.android.material.textview.MaterialTextView
@@ -114,6 +106,7 @@
                 android:id="@+id/ruble"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="5dp"
                 android:text="@string/spaced_ruble"
                 app:fontFamily="@font/roboto_medium" />
 

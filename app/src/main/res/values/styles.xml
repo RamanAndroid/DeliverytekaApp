@@ -9,8 +9,19 @@
         <item name="android:insetLeft">0dp</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetRight">0dp</item>
-        <item name="android:backgroundTint">@color/color_primary</item>
+        <item name="android:backgroundTint">@color/teal_200</item>
         <item name="cornerRadius">24dp</item>
         <item name="android:insetBottom">0dp</item>
+    </style>
+    <style name="LabelStyle">
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:textColor">@color/teal_200</item>
+        <item name="android:textSize">@dimen/text_normal</item>
+    </style>
+
+    <style name="BorderStyle">
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:background">@color/color_primary_variant</item>
     </style>
 </resources>
