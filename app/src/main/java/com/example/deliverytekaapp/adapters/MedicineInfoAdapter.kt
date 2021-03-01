@@ -1,18 +1,20 @@
 package com.example.deliverytekaapp.adapters
 
-import android.content.Context
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.deliverytekaapp.R
 import com.example.deliverytekaapp.pojo.Medicine
-import kotlinx.android.synthetic.main.item_medecine_info.view.*
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.item_medicine_info.view.*
 
-class MedicineInfoAdapter(private val context: Context) :
+class MedicineInfoAdapter(private val context: FragmentActivity?) :
     RecyclerView.Adapter<MedicineInfoAdapter.MedicineInfoViewHolder>() {
 
     inner class MedicineInfoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -33,21 +35,29 @@ class MedicineInfoAdapter(private val context: Context) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MedicineInfoViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_medecine_info, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_medicine_info, parent, false)
         return MedicineInfoViewHolder(view)
     }
 
 
-
     override fun onBindViewHolder(holder: MedicineInfoViewHolder, position: Int) {
-        val dosageFormat = context.resources.getString(R.string.dosage)
-        val manufactureFormat = context.resources.getString(R.string.manufacture)
         val medicine = medicineInfoList[position]
-        holder.tvTitle.text = medicine.name
-        holder.tvPrice.text= medicine.price
-        holder.tvPack.text = String.format(dosageFormat,medicine.dosage,medicine.pack)
-        holder.tvCountry.text = String.format(manufactureFormat,medicine.country)
-        holder.tvRecipe.text =isRecipe(medicine.isrecipe)
+        context?.let {
+            val dosageFormat = context.resources.getString(R.string.dosage)
+            val manufactureFormat = context.resources.getString(R.string.manufacture)
+            holder.tvPack.text = String.format(dosageFormat, medicine.dosage, medicine.pack)
+            holder.tvCountry.text = String.format(manufactureFormat, medicine.country)
+            holder.tvTitle.text = medicine.name
+            holder.tvPrice.text = medicine.price
+            Picasso.get().load(medicine.getFullImageUrl()).into(holder.ivLogoCoin)
+            if(isRecipe(medicine.isrecipe)){
+                holder.tvRecipe.text ="-Без рецепта врача"
+            }else{
+                holder.tvRecipe.text ="-По рецепту врача"
+                holder.tvRecipe.setTextColor(Color.parseColor("#8b0000"))
+            }
+        }
+
         holder.itemView.setOnClickListener {
             onMedicineClickListener?.onMedicineClick(medicine)
         }
@@ -60,11 +70,11 @@ class MedicineInfoAdapter(private val context: Context) :
 
     override fun getItemCount(): Int = medicineInfoList.size
 
-    private fun isRecipe(isrecipe: String?):String {
+    private fun isRecipe(isrecipe: String?): Boolean {
         isrecipe?.let {
-            if (it.toInt() == 1) return "-Без рецепта врача"
+            if (it.toInt() == 0) return true
         }
-        return "-По рецепту врача"
+        return false
     }
 
 }

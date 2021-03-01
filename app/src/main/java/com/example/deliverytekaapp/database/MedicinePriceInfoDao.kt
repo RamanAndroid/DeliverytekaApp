@@ -10,9 +10,6 @@ interface MedicinePriceInfoDao {
     @Query("SELECT * FROM full_price_list")
     fun getMedicine(): LiveData<List<Medicine>>
 
-    @Query("SELECT * FROM full_price_list WHERE id==:medicineId")
-    fun getInfoAboutMedicine(medicineId:String): LiveData<Medicine>
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertMedicineList(priceList: List<Medicine>)
 

@@ -3,4 +3,16 @@
     <string name="spaced_ruble"> руб</string>
     <string name="manufacture">-Изготовитель: %s</string>
     <string name="dosage">-Количество: %s x %s</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="profile">Профиль</string>
+    <string name="email">Эл.почта</string>
+    <string name="password">Пароль</string>
+    <string name="login">Войти</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="phone_number">Номер телефона</string>
+    <string name="repeat_password">Повторите пароль</string>
+    <string name="fill_password">Введите свой пароль</string>
+    <string name="fill_email">Введите свою эл.почту</string>
+    <string name="fill_phone">Введите свой номер телефона</string>
 </resources>

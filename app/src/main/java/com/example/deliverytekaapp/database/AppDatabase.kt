@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.deliverytekaapp.pojo.FavouriteMedicine
 import com.example.deliverytekaapp.pojo.Medicine
 
-@Database(entities = [Medicine::class, FavouriteMedicine::class], version = 8, exportSchema = false)
+@Database(entities = [Medicine::class, FavouriteMedicine::class], version = 11, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     companion object {
 

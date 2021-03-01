@@ -2,6 +2,7 @@ package com.example.deliverytekaapp.pojo
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.deliverytekaapp.api.ApiFactory.BASE_URL
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
@@ -44,5 +45,14 @@ data class Medicine(
 
     @SerializedName("description")
     @Expose
-    val description: String?
-)
+    val description: String?,
+
+    @SerializedName("img")
+    @Expose
+    val imageUrl: String?
+){
+
+    fun getFullImageUrl(): String {
+        return "https://komaroff-site.000webhostapp.com/$imageUrl"
+    }
+}

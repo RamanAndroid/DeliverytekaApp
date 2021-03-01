@@ -6,7 +6,8 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "favourite_medicine")
 data class FavouriteMedicine(
     @PrimaryKey
-    val productId:String,
+    val userId:String,
+    val medicineId:String,
     val count:Int
 )
 
