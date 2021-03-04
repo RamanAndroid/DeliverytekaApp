@@ -21,7 +21,7 @@ class CatalogFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val userId = arguments?.getString(ID_USER)
+        val userId = arguments?.getString("ID_USER","")
         val view = inflater.inflate(R.layout.fragment_catalog, container, false)
         val recyclerview = view.findViewById(R.id.rvMedecinePriceList) as RecyclerView
         recyclerview.layoutManager = LinearLayoutManager(activity)
@@ -35,7 +35,7 @@ class CatalogFragment : Fragment() {
                             it1,
                             medicine.id,
                             userId.toString()
-                            )
+                        )
                     }
                 }
                 startActivity(intent)
@@ -48,25 +48,8 @@ class CatalogFragment : Fragment() {
                 it.also { adapter.medicineInfoList = it }
             })
         }
-        activity?.let { it ->
-            medicineViewModel.favouriteMedicine.observe(it, {
-                Log.d("TEST", it.toString())
-            })
-        }
         return view
     }
 
-    companion object {
-        const val ID_USER = "id"
-        fun newInstance(id: String?): CatalogFragment {
-            val fragment = CatalogFragment()
-            val bundle = Bundle().apply {
-                putString(ID_USER, id)
-            }
-            fragment.arguments = bundle
-            return fragment
-        }
 
-
-    }
 }

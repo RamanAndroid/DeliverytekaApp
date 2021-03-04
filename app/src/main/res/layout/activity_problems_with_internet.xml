@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:id="@+id/no_network_layout"
+    android:orientation="vertical"
+    android:background="@color/teal_200"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_no_internet"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_warning_internet"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/refresh_btn"
+        android:layout_width="158dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="31dp"
+        android:textSize="13sp"
+        android:backgroundTint="@color/color_surface"
+        android:text="Перезагрузить"
+        android:textColor="@color/color_on_surface"
+        android:textAllCaps="true" />
+
+</LinearLayout>

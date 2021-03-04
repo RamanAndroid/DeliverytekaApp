@@ -45,16 +45,18 @@ class MedicineInfoAdapter(private val context: FragmentActivity?) :
         context?.let {
             val dosageFormat = context.resources.getString(R.string.dosage)
             val manufactureFormat = context.resources.getString(R.string.manufacture)
-            holder.tvPack.text = String.format(dosageFormat, medicine.dosage, medicine.pack)
+            holder.tvPack.text = String.format(dosageFormat,medicine.form, medicine.dosage, medicine.pack)
             holder.tvCountry.text = String.format(manufactureFormat, medicine.country)
             holder.tvTitle.text = medicine.name
             holder.tvPrice.text = medicine.price
+
             Picasso.get().load(medicine.getFullImageUrl()).into(holder.ivLogoCoin)
             if(isRecipe(medicine.isrecipe)){
                 holder.tvRecipe.text ="-Без рецепта врача"
+                holder.tvRecipe.setTextColor(Color.parseColor("#45827A"))
             }else{
                 holder.tvRecipe.text ="-По рецепту врача"
-                holder.tvRecipe.setTextColor(Color.parseColor("#8b0000"))
+                holder.tvRecipe.setTextColor(Color.parseColor("#F44336"))
             }
         }
 

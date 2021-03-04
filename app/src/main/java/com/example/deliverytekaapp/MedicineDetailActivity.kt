@@ -15,24 +15,23 @@ import com.squareup.picasso.Picasso
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_medecine_detail.*
-import kotlinx.android.synthetic.main.activity_medecine_detail.product_detail_image
-import kotlinx.android.synthetic.main.item_medicine_info.*
 import kotlinx.android.synthetic.main.medicine_info.*
 
 
 class MedicineDetailActivity : AppCompatActivity() {
     private val compositeDisposable = CompositeDisposable()
-    private lateinit var countryPill:TextView
-    private lateinit var formPill:TextView
-    private lateinit var dosagePill:TextView
-    private lateinit var isRecipe:TextView
-    private lateinit var descriptionPill:TextView
+    private lateinit var countryPill: TextView
+    private lateinit var formPill: TextView
+    private lateinit var dosagePill: TextView
+    private lateinit var isRecipe: TextView
+    private lateinit var descriptionPill: TextView
     private lateinit var addToFavouriteMedicine: Button
-    private lateinit var plusCount:ImageView
-    private lateinit var minusCount:ImageView
-    private lateinit var textCount:TextView
-    private lateinit var priceText:TextView
-    private lateinit var ivLogoCoin:ImageView
+    private lateinit var plusCount: ImageView
+    private lateinit var minusCount: ImageView
+    private lateinit var textCount: TextView
+    private lateinit var priceText: TextView
+    private lateinit var ivLogoCoin: ImageView
+
     var price = 0.00f
     var count = 1
 
@@ -43,6 +42,7 @@ class MedicineDetailActivity : AppCompatActivity() {
             finish()
             return
         }
+
         countryPill = country_pill
         formPill = form_pill
         dosagePill = dosage_pill
@@ -72,6 +72,8 @@ class MedicineDetailActivity : AppCompatActivity() {
         plusCount.setOnClickListener {
             if (count < 99) {
                 count++
+            }else{
+                Toast.makeText(this,"Нельзя добавить больше лекарств",Toast.LENGTH_SHORT).show()
             }
             priceText.text = roundOffTo2DecPlaces(price * count)
             textCount.text = count.toString()
@@ -79,6 +81,8 @@ class MedicineDetailActivity : AppCompatActivity() {
         minusCount.setOnClickListener {
             if (count > 1) {
                 count--
+            }else{
+                Toast.makeText(this,"Нельзя добавить меньше лекарств",Toast.LENGTH_SHORT).show()
             }
             priceText.text = roundOffTo2DecPlaces(price * count)
             textCount.text = count.toString()
@@ -98,7 +102,7 @@ class MedicineDetailActivity : AppCompatActivity() {
     }
 
     private fun roundOffTo2DecPlaces(number: Float): String {
-        return String.format("%.2f", number)
+        return String.format("%.2f" + " ₽", number)
     }
 
     private fun isRecipe(isrecipe: String?): String {
@@ -125,12 +129,22 @@ class MedicineDetailActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun fillCart(medicineInfoList: List<Medicine>) {
         val medicine = medicineInfoList[0]
         runOnUiThread {
-            price = medicine.price!!.toFloat()
+            val toolbarDetailActivity = toolbar_detail_activity
+            setSupportActionBar(toolbarDetailActivity)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setHomeButtonEnabled(true)
+            toolbarDetailActivity.setNavigationOnClickListener {
+                finish()
+                onBackPressed()
+            }
+            supportActionBar?.title = medicine.name
+            price = medicine.price!!.toDouble().toFloat()
             Picasso.get().load(medicine.getFullImageUrl()).into(ivLogoCoin)
-            priceText.text = price.toString()
+            priceText.text = getString(R.string.price_text, price.toString())
             textCount.text = count.toString()
             formPill.text = medicine.form
             dosagePill.text = medicine.dosage

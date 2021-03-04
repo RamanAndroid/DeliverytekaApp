@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">DeliverytekaApp</string>
-    <string name="spaced_ruble"> руб</string>
+    <string name="app_name">Deliveryteka</string>
+    <string name="spaced_ruble"> ₽</string>
     <string name="manufacture">-Изготовитель: %s</string>
-    <string name="dosage">-Количество: %s x %s</string>
+    <string name="dosage">-%s: %s x %s</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="profile">Профиль</string>
@@ -15,4 +15,10 @@
     <string name="fill_password">Введите свой пароль</string>
     <string name="fill_email">Введите свою эл.почту</string>
     <string name="fill_phone">Введите свой номер телефона</string>
+    <string name="price_text">%s ₽</string>
+    <string name="spaced_dollar">₽</string>
+    <string name="count_cart_item">x</string>
+
+    <string name="change_password">Изменить пароль</string>
+    <string name="sing_out">Выйти</string>
 </resources>

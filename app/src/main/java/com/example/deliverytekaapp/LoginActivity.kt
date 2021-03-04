@@ -1,6 +1,10 @@
 package com.example.deliverytekaapp
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -16,6 +20,7 @@ import ru.tinkoff.decoro.parser.UnderscoreDigitSlotsParser
 import ru.tinkoff.decoro.watchers.FormatWatcher
 import ru.tinkoff.decoro.watchers.MaskFormatWatcher
 
+
 class LoginActivity : AppCompatActivity() {
     private lateinit var loginButton: Button
     private lateinit var phoneUser: TextInputEditText
@@ -25,6 +30,15 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        var intent: Intent
+        if (!haveInternet(this@LoginActivity)) {
+            intent = Intent(
+                this@LoginActivity,
+                ProblemsWithInternetActivity::class.java
+            )
+            startActivity(intent)
+            finish()
+        }
         phoneUser = phones_input
         passwordUser = passwords_input
         loginButton = login_btn
@@ -35,7 +49,7 @@ class LoginActivity : AppCompatActivity() {
         )
         formatWatcher.installOn(phoneUser)
         loginButton.setOnClickListener {
-            if(phoneUser.text.toString().length==17){
+            if (phoneUser.text.toString().length == 17) {
                 Toast.makeText(this, "Введите номер телефона", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
@@ -52,7 +66,7 @@ class LoginActivity : AppCompatActivity() {
                         } else {
                             val EXTRA_ID = "id"
                             val EXTRA_PHONE = "phone"
-                            val intent = Intent(
+                            intent = Intent(
                                 this@LoginActivity,
                                 MedicinePriceListActivity::class.java
                             )
@@ -62,7 +76,7 @@ class LoginActivity : AppCompatActivity() {
                             finish()
                         }
                     }, {
-                        Log.d("TEST_FAILURE", it.toString())
+                        Log.d("TEST_FAILURE", haveInternet(this@LoginActivity).toString())
                     })
                 Log.d("TEST", disposable.toString())
                 compositeDisposable.add(disposable)
@@ -72,8 +86,10 @@ class LoginActivity : AppCompatActivity() {
             }
         }
         registerButton.setOnClickListener {
-            val intent = Intent(this, RegistrationActivity::class.java)
+            intent = Intent(this@LoginActivity, RegistrationActivity::class.java)
             startActivity(intent)
+            Log.d("TEST_FAILURE", haveInternet(this@LoginActivity).toString())
+
         }
 
 
@@ -87,6 +103,37 @@ class LoginActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
         }
+    }
+
+    fun haveInternet(ctx: Context): Boolean {
+        var result = false
+        val connectivityManager =
+            ctx.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val networkCapabilities = connectivityManager.activeNetwork ?: return false
+            val actNw =
+                connectivityManager.getNetworkCapabilities(networkCapabilities) ?: return false
+            result = when {
+                actNw.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+                actNw.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+                actNw.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+                else -> false
+            }
+        } else {
+            connectivityManager.run {
+                connectivityManager.activeNetworkInfo?.run {
+                    result = when (type) {
+                        ConnectivityManager.TYPE_WIFI -> true
+                        ConnectivityManager.TYPE_MOBILE -> true
+                        ConnectivityManager.TYPE_ETHERNET -> true
+                        else -> false
+                    }
+
+                }
+            }
+        }
+
+        return result
     }
 
     override fun onDestroy() {
